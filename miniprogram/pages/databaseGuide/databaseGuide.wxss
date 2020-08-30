@@ -1,0 +1,16 @@
+/* pages/databaseGuide/databaseGuide.wxss */
+
+@import "../../style/guide.wxss";
+
+.guide .counter {
+  margin-top: 50rpx;
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+}
+.text {
+  background: white;
+  border: 1px solid black;
+  height: 150rpx;
+  width: 100%;
+}
