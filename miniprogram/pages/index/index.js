@@ -103,12 +103,17 @@ Page({
       }
     })
  },
-
+ bindHideKeyboard: function (e) {
+  if (e.detail.value != '') {
+    // 收起键盘
+    wx.hideKeyboard()
+  }
+},
  onQuery: function() {
   const db = wx.cloud.database()
   // 查询当前用户所有的 counters
   db.collection('counters').where({
-    _id : this.data.word
+    _id : this.data.title
   }).get({
     success: res => {
       this.setData({

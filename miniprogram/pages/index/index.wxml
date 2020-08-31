@@ -5,7 +5,7 @@
 	<view class="userinfo">
 		<button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})" size="default"></button>
 		<view class="userinfo-nickname-wrapper">
-			<button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
+			<button class="userinfo-nickname" bindtap="onGetOpenid">小包库存</button>
 		</view>
 	</view>
 	<!--自定义-->
@@ -22,11 +22,11 @@
           <input name="color1" bindinput="bindcolor1" placeholder="颜色1"></input>
           <label>尺寸信息</label>
           <view class="color1detail">
-            <input name="color1xs" placeholder="XS数量"></input>
-            <input name="color1s" placeholder="S数量"></input>
-            <input name="color1m" placeholder="M数量"></input>
-            <input name="color1l" placeholder="L数量"></input>
-            <input name="color1xl" placeholder="XL数量"></input>
+            <input bindinput="bindHideKeyboard" type="number" name="color1xs" placeholder="XS数量"></input>
+            <input bindinput="bindHideKeyboard" type="number" name="color1s" placeholder="S数量"></input>
+            <input bindinput="bindHideKeyboard" type="number" name="color1m" placeholder="M数量"></input>
+            <input bindinput="bindHideKeyboard" type="number" name="color1l" placeholder="L数量"></input>
+            <input bindinput="bindHideKeyboard" type="number" name="color1xl" placeholder="XL数量"></input>
           </view>
         </view>
 
@@ -35,11 +35,11 @@
           <input name="color2" placeholder="颜色2"></input>
           <label>尺寸信息</label>
           <view class="color2detail">
-            <input name="color2xs" placeholder="XS数量"></input>
-            <input name="color2s" placeholder="S数量"></input>
-            <input name="color2m" placeholder="M数量"></input>
-            <input name="color2l" placeholder="L数量"></input>
-            <input name="color2xl" placeholder="XL数量"></input>
+            <input bindinput="bindHideKeyboard" type="number" name="color2xs" placeholder="XS数量"></input>
+            <input bindinput="bindHideKeyboard" type="number" name="color2s" placeholder="S数量"></input>
+            <input bindinput="bindHideKeyboard" type="number" name="color2m" placeholder="M数量"></input>
+            <input bindinput="bindHideKeyboard" type="number" name="color2l" placeholder="L数量"></input>
+            <input bindinput="bindHideKeyboard" type="number" name="color2xl" placeholder="XL数量"></input>
           </view>
         </view>
       </view>
