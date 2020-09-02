@@ -12,6 +12,9 @@
       <text class="request-text">云文件路径：{{cloudPath}}</text>
     </view>
     <view class="list-item">
+      <text class="request-text">imagePath：{{imagePath}}</text>
+    </view>
+    <view class="list-item">
       <image class="image1" src="{{imagePath}}" mode="aspectFit"></image>
     </view>
   </view>

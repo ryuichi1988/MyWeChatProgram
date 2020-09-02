@@ -46,12 +46,21 @@
 
 
 			<button class="button" id="button" form-type="submit">添加{{word}}</button>
-		</view>
-    <view>
+		</view >
+    <view class="code">
       <button size="mini" type="default" bindtap="onQuery">查询记录</button>
-      <text class="code" wx:if="{{queryResult}}">{{queryResult}}</text>
+      <text  wx:if="{{queryResult}}">{{queryResult}}</text>
     </view>
+		<view class="testButton">
+		<button class="testb" id="testb" bindtap="onCounterInc">上传文件后点击此处</button>
+		<button class="testb" id="testb" bindtap="showpic">显示图片:{{imagePath}}</button>
+		<!--<block wx:if="{{xx}}">	一般这里我们会绑定一个变量，如果这个变量是true，也就是有值的情况下，该view1就会被渲染，如果没值或者是false会渲染下面view2的代码块 		</block> -->
+  		<view>
+				<image class="image1" src="{{imagePath}}" mode="aspectFit"></image>
+			</view>
 
+			
+		</view>
 	</form>
 	<!-- 上传图片 -->
 	<view class="uploader">

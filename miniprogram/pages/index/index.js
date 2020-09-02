@@ -8,8 +8,9 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    title:""
-
+    title:"",
+    word:"",
+    imgpath:"",
   },
 
   onLoad: function() {
@@ -81,12 +82,13 @@ Page({
         b_3__M:e.detail.value.color2m,
         b_4__L:e.detail.value.color2l,
         b_5__XL:e.detail.value.color2xl,
+        imgpath:"",
       },
 
       success: res => {
         // 在返回结果中会包含新创建的记录的 _id
         this.setData({
-          counterId: "testID",
+          counterId:res._id,
           count: 1
         })
         wx.showToast({
@@ -109,17 +111,20 @@ Page({
     wx.hideKeyboard()
   }
 },
+
  onQuery: function() {
   const db = wx.cloud.database()
   // 查询当前用户所有的 counters
   db.collection('counters').where({
-    _id : this.data.title
+    _id : this.data.title //查询写入的序列号
   }).get({
     success: res => {
       this.setData({
-        queryResult: JSON.stringify(res.data, null, 2)
+        //queryResult: JSON.stringify(res.data, null, 2)
+        queryResult: JSON.stringify(res.data, null, 2),
+        resid:5
       })
-      console.log('[数据库] [查询记录] 成功: ', res)
+      console.log('[数据库] [查询记录] 成功: ', res,rescolor1)
     },
     fail: err => {
       wx.showToast({
@@ -151,10 +156,39 @@ Page({
       }
     })
   },
+  showpic:function(){
+    this.setData({
+      imagePath:app.globalData.imagePath
+      //imagePath:IMAGEPATH
+
+    })
+  },
+
+  onCounterInc: function() {
+    const db = wx.cloud.database()
+    const newCount = this.data.count + 1
+    db.collection('counters').doc(this.data.counterId).update({
+      data: {
+        imgpath: app.globalData.imagePath
+      },
+      success: res => {
+        this.setData({
+          count: newCount
+        })
+      },
+      fail: err => {
+        icon: 'none',
+        console.error('[数据库] [更新记录] 失败：', err)
+      }
+    })
+ },
 
   // 上传图片
   doUpload: function () {
     // 选择图片
+    const word = this.data.word
+//    const db = wx.cloud.database()
+//    const newIm = "test"
     wx.chooseImage({
       count: 1,
       sizeType: ['compressed'],
@@ -168,7 +202,8 @@ Page({
         const filePath = res.tempFilePaths[0]
         
         // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
+        const cloudPath = word + filePath.match(/\.[^.]+?$/)[0]
+
         wx.cloud.uploadFile({
           cloudPath,
           filePath,
@@ -178,10 +213,11 @@ Page({
             app.globalData.fileID = res.fileID
             app.globalData.cloudPath = cloudPath
             app.globalData.imagePath = filePath
+            //向counters添加文件路径
             
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
-            })
+//            wx.navigateTo({
+ //             url: '../storageConsole/storageConsole'
+  //          })
           },
           fail: e => {
             console.error('[上传文件] 失败：', e)
@@ -192,8 +228,14 @@ Page({
           },
           complete: () => {
             wx.hideLoading()
+//            db.collection('counters').doc(this.data.word).update({
+//              data: {
+//                imgpath: "newIm"
+//              },
+//            })
           }
         })
+        
 
       },
       fail: e => {

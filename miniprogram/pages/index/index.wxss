@@ -57,7 +57,11 @@ input {
 .userinfo {
   padding-left: 120rpx;
 }
-
+.code {
+  border: 1rpx solid black;
+  width: 600rpx;
+  padding: 20rpx;
+}
 .userinfo-avatar {
   width: 100rpx;
   height: 100rpx;
