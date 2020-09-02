@@ -11,6 +11,7 @@ Page({
     title:"",
     word:"",
     imgpath:"",
+    ne:[],
   },
 
   onLoad: function() {
@@ -122,7 +123,9 @@ Page({
       this.setData({
         //queryResult: JSON.stringify(res.data, null, 2)
         queryResult: JSON.stringify(res.data, null, 2),
-        resid:5
+        resid:5,
+        ne: res.data,
+        imagePath:res.data.imgpath
       })
       console.log('[数据库] [查询记录] 成功: ', res,rescolor1)
     },
@@ -181,6 +184,8 @@ Page({
         console.error('[数据库] [更新记录] 失败：', err)
       }
     })
+ },
+ test1:function(){
  },
 
   // 上传图片

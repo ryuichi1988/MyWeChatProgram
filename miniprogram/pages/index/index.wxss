@@ -70,7 +70,9 @@ input {
   background-size: cover;
   background-color: white;
 }
-
+.a {
+  width: 600rpx;
+}
 .userinfo-avatar[size] {
   width: 100rpx;
 }

@@ -52,13 +52,26 @@
       <text  wx:if="{{queryResult}}">{{queryResult}}</text>
     </view>
 		<view class="testButton">
-		<button class="testb" id="testb" bindtap="onCounterInc">上传文件后点击此处</button>
-		<button class="testb" id="testb" bindtap="showpic">显示图片:{{imagePath}}</button>
+		<view class='a' wx:for="{{ne}}"><!--wx:for是微信数据绑定的一种方式，该数组有多少数据就显示多少个view-->
+    <!--index为每个数据对应的下标-->
+    <view >序号：{{index+1}}</view>
+    <!--item就相当于数组名+下标的结合体，适用于调用数组所有数据-->
+    <view>{{item._id}}</view>
+    <view >{{item.a_0__Color}}</view>
+    <view >{{item.b_0__Color}}</view>
+		<view >{{item.imgpath}}</view>
+		
+		<button class="testb" id="testb" bindtap="showpic">显示图片:{{item.imgpath}}</button>
 		<!--<block wx:if="{{xx}}">	一般这里我们会绑定一个变量，如果这个变量是true，也就是有值的情况下，该view1就会被渲染，如果没值或者是false会渲染下面view2的代码块 		</block> -->
   		<view>
-				<image class="image1" src="{{imagePath}}" mode="aspectFit"></image>
+				<image class="image1" src="{{item.imgpath}}" mode="aspectFit"></image>
 			</view>
+			<view>
+				<button bindtap="test1">测试按钮{{test1}}</button>
 
+			</view>
+		
+		</view>
 			
 		</view>
 	</form>
@@ -72,6 +85,13 @@
 		</view>
 	</view>
 
+	<view class="uploader">
+		<view class="uploader-text" bindtap="onCounterInc">
+			<button>上传后点此处</button>
+
+	
+		</view>
+	</view>
 
 	<!-- 操作数据库 -->
 	<view class="uploader">
