@@ -11,9 +11,15 @@ Page({
     title:"",
     word:"",
     imgpath:"",
-    ne:[]    
+    ne:[], 
+    showOrHidden:false
   },
-
+  showButton: function(){
+    
+    this.setData({
+      showOrHidden:true
+    })
+  },
 
   onLoad: function() {
     if (!wx.cloud) {

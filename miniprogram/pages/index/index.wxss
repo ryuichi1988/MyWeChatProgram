@@ -6,6 +6,15 @@ page {
   flex-direction: column;
   justify-content: flex-start;
 }
+
+.hidden {
+  display: none;
+}
+ 
+.show {
+  display: block;
+}
+
 .textarea {
   padding: 20rpx;
   background: white;
@@ -13,8 +22,8 @@ page {
   height: 80rpx;
   margin-top: 40rpx;
   width: 90%;
-
 }
+
 .color {
   float: left;
   align-items: center;
@@ -22,15 +31,17 @@ page {
   width: 40%;
   padding: 15rpx;
 }
-.button {
+
+button {
   padding: 30rpx;
-  background:lightgreen;
+  font-family: 宋体;
   size: mini;
   border: 1rpx solid green;
-  margin-top: 30rpx;
-  height: 70%;
-  width: 40rpx;
+  
+  background: linear-gradient(to right, #ead6ee, #a0f1ea); 
+
 }
+
 input {
   padding: 20rpx;
   background: white;
@@ -40,6 +51,7 @@ input {
   width: 70%;
   vertical-align: middle;
 }
+
 .userinfo, .uploader, .tunnel {
   margin-top: 40rpx;
   height: 140rpx;
@@ -57,11 +69,13 @@ input {
 .userinfo {
   padding-left: 120rpx;
 }
+
 .code {
   border: 1rpx solid black;
   width: 600rpx;
   padding: 20rpx;
 }
+
 .userinfo-avatar {
   width: 100rpx;
   height: 100rpx;
@@ -70,13 +84,14 @@ input {
   background-size: cover;
   background-color: white;
 }
+
 .a {
   width: 600rpx;
 }
+
 .userinfo-avatar[size] {
   width: 100rpx;
 }
-
 
 .userinfo-avatar:after {
   border: none;
@@ -125,7 +140,11 @@ input {
   box-sizing: border-box;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
+.topelement ,.colorblock{
+  padding: 10rpx;
 
+  margin: 0 auto;
+}
 .uploader-image {
   width: 100%;
   height: 360rpx;

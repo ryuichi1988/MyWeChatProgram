@@ -1,119 +1,132 @@
-<!--index.wxml-->
-<view class="container">
-	<!-- 用户 openid -->
-	<view class="userinfo">
-		<button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})" size="default"></button>
-		<view class="userinfo-nickname-wrapper">
-			<button class="userinfo-nickname" bindtap="onGetOpenid">小包库存</button>
+<view>
+ <button class='show-button' bindtap='showButton'>显示编辑区域</button>
+</view>
+
+<view class=" {{showOrHidden?'show':'hidden'}}">
+	<!--index.wxml-->
+	<view class="container">
+		<view class="topelement">
+		<!--自定义-->
+			<form bindsubmit="tapped">
+				<view class="myview">
+					<view class="number">
+						<label>商品号码</label>
+						<textarea class="textarea" bindinput="bindKinput" name="word" placeholder="请输入序号,若序号不存在则添加本页内容"></textarea>
+					</view>
+
+					<view class="colorblock">
+						<view class="color">
+							<label>颜色</label>
+							<input name="color1" bindinput="bindcolor1" placeholder="颜色1"></input>
+							<label>尺寸信息</label>
+							<view class="color1detail">
+								<input bindinput="bindHideKeyboard" type="number" name="color1xs" placeholder="XS数量"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color1s" placeholder="S数量"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color1m" placeholder="M数量"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color1l" placeholder="L数量"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color1xl" placeholder="XL数量"></input>
+							</view>
+						</view>
+
+						<view class="color">
+							<label>颜色</label>
+							<input name="color2" placeholder="颜色2"></input>
+							<label>尺寸信息</label>
+							<view class="color2detail">
+								<input bindinput="bindHideKeyboard" type="number" name="color2xs" placeholder="XS数量"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color2s" placeholder="S数量"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color2m" placeholder="M数量"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color2l" placeholder="L数量"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color2xl" placeholder="XL数量"></input>
+							</view>
+						</view>
+					</view>
+
+					<button class="button" id="button" form-type="submit">添加{{word}}</button>
+				</view >
+				<view class="code">
+					<button size="mini" type="default" bindtap="onQuery">查询记录</button>
+					<text  wx:if="{{queryResult}}">{{queryResult}}</text>
+				</view>
+				<view class="testButton">
+				<view class='a' wx:for="{{ne}}"><!--wx:for是微信数据绑定的一种方式，该数组有多少数据就显示多少个view-->
+				<!--index为每个数据对应的下标-->
+				<view >序号：{{index+1}}</view>
+				<!--item就相当于数组名+下标的结合体，适用于调用数组所有数据-->
+				<view>{{item._id}}</view>
+				<view >{{item.a_0__Color}}</view>
+				<view >{{item.b_0__Color}}</view>
+				<view >{{item.imgpath}}</view>
+				
+				<button class="testb" id="testb" bindtap="showpic">显示图片:{{item.imgpath}}</button>
+				<!--<block wx:if="{{xx}}">	一般这里我们会绑定一个变量，如果这个变量是true，也就是有值的情况下，该view1就会被渲染，如果没值或者是false会渲染下面view2的代码块 		</block> -->
+					<view>
+						<image class="image1" src="{{item.imgpath}}" mode="aspectFit"></image>
+					</view>
+					<view>
+						<button bindtap="test1">测试按钮{{test1}}</button>
+
+					</view>
+				
+				</view>
+					
+				</view>
+			</form>
 		</view>
-	</view>
-	<!--自定义-->
-	<form bindsubmit="tapped">
-		<view class="myview">
-			<view class="number">
-				<label>商品号码</label>
-				<textarea class="textarea" bindinput="bindKinput" name="word" placeholder="请输入序号,若序号不存在则添加本页内容"></textarea>
+		<!-- 上传图片 -->
+		<view class="uploader">
+			<view class="uploader-text" bindtap="doUpload">
+				<text>上传图片</text>
 			</view>
-
-      <view class="colorblock">
-        <view class="color">
-          <label>颜色</label>
-          <input name="color1" bindinput="bindcolor1" placeholder="颜色1"></input>
-          <label>尺寸信息</label>
-          <view class="color1detail">
-            <input bindinput="bindHideKeyboard" type="number" name="color1xs" placeholder="XS数量"></input>
-            <input bindinput="bindHideKeyboard" type="number" name="color1s" placeholder="S数量"></input>
-            <input bindinput="bindHideKeyboard" type="number" name="color1m" placeholder="M数量"></input>
-            <input bindinput="bindHideKeyboard" type="number" name="color1l" placeholder="L数量"></input>
-            <input bindinput="bindHideKeyboard" type="number" name="color1xl" placeholder="XL数量"></input>
-          </view>
-        </view>
-
-        <view class="color">
-          <label>颜色</label>
-          <input name="color2" placeholder="颜色2"></input>
-          <label>尺寸信息</label>
-          <view class="color2detail">
-            <input bindinput="bindHideKeyboard" type="number" name="color2xs" placeholder="XS数量"></input>
-            <input bindinput="bindHideKeyboard" type="number" name="color2s" placeholder="S数量"></input>
-            <input bindinput="bindHideKeyboard" type="number" name="color2m" placeholder="M数量"></input>
-            <input bindinput="bindHideKeyboard" type="number" name="color2l" placeholder="L数量"></input>
-            <input bindinput="bindHideKeyboard" type="number" name="color2xl" placeholder="XL数量"></input>
-          </view>
-        </view>
-      </view>
-
-			<button class="button" id="button" form-type="submit">添加{{word}}</button>
-		</view >
-    <view class="code">
-      <button size="mini" type="default" bindtap="onQuery">查询记录</button>
-      <text  wx:if="{{queryResult}}">{{queryResult}}</text>
-    </view>
-		<view class="testButton">
-		<view class='a' wx:for="{{ne}}"><!--wx:for是微信数据绑定的一种方式，该数组有多少数据就显示多少个view-->
-    <!--index为每个数据对应的下标-->
-    <view >序号：{{index+1}}</view>
-    <!--item就相当于数组名+下标的结合体，适用于调用数组所有数据-->
-    <view>{{item._id}}</view>
-    <view >{{item.a_0__Color}}</view>
-    <view >{{item.b_0__Color}}</view>
-		<view >{{item.imgpath}}</view>
-		
-		<button class="testb" id="testb" bindtap="showpic">显示图片:{{item.imgpath}}</button>
-		<!--<block wx:if="{{xx}}">	一般这里我们会绑定一个变量，如果这个变量是true，也就是有值的情况下，该view1就会被渲染，如果没值或者是false会渲染下面view2的代码块 		</block> -->
-  		<view>
-				<image class="image1" src="{{item.imgpath}}" mode="aspectFit"></image>
+			<view class="uploader-container" wx:if="{{imgUrl}}">
+				<image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
 			</view>
-			<view>
-				<button bindtap="test1">测试按钮{{test1}}</button>
+		</view>
 
+		<view class="uploader">
+			<view class="uploader-text" bindtap="onCounterInc">
+				<button>上传后点此处</button>
 			</view>
-		
 		</view>
-			
+
+		<!-- 操作数据库 -->
+		<view class="uploader">
+			<navigator url="../databaseGuide/databaseGuide" open-type="navigate" class="uploader-text">
+				<text>前端操作数据库</text>
+			</navigator>
 		</view>
-	</form>
-	<!-- 上传图片 -->
-	<view class="uploader">
-		<view class="uploader-text" bindtap="doUpload">
-			<text>上传图片</text>
+
+		<!-- 即时通信 -->
+		<view class="uploader">
+			<navigator url="../im/im" open-type="navigate" class="uploader-text">
+				<text>即时通信 Demo</text>
+			</navigator>
 		</view>
-		<view class="uploader-container" wx:if="{{imgUrl}}">
-			<image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
+
+		<!-- 新建云函数 -->
+		<view class="uploader">
+			<navigator url="../addFunction/addFunction" open-type="navigate" class="uploader-text">
+				<text>快速新建云函数</text>
+			</navigator>
+		</view>
+
+		<!-- 云调用 -->
+		<view class="uploader">
+			<navigator url="../openapi/openapi" open-type="navigate" class="uploader-text">
+				<text>云调用</text>
+			</navigator>
 		</view>
 	</view>
+</view>
 
-	<view class="uploader">
-		<view class="uploader-text" bindtap="onCounterInc">
-			<button>上传后点此处</button>
-		</view>
-	</view>
-
-	<!-- 操作数据库 -->
-	<view class="uploader">
-		<navigator url="../databaseGuide/databaseGuide" open-type="navigate" class="uploader-text">
-			<text>前端操作数据库</text>
-		</navigator>
-	</view>
-
-	<!-- 即时通信 -->
-	<view class="uploader">
-		<navigator url="../im/im" open-type="navigate" class="uploader-text">
-			<text>即时通信 Demo</text>
-		</navigator>
-	</view>
-
-	<!-- 新建云函数 -->
-	<view class="uploader">
-		<navigator url="../addFunction/addFunction" open-type="navigate" class="uploader-text">
-			<text>快速新建云函数</text>
-		</navigator>
-	</view>
-
-	<!-- 云调用 -->
-	<view class="uploader">
-		<navigator url="../openapi/openapi" open-type="navigate" class="uploader-text">
-			<text>云调用</text>
-		</navigator>
-	</view>
+<view class="list">
+ <view>
+ <text>全部库存信息</text>
+ <text>全部库存信息</text>
+ <text>全部库存信息</text>
+ <text>全部库存信息</text>
+ <text>全部库存信息</text>
+ <text>全部库存信息</text>
+ 
+ </view>
 </view>
