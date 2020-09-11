@@ -1,6 +1,5 @@
 <!--index.wxml-->
 <view class="container">
-
 	<!-- 用户 openid -->
 	<view class="userinfo">
 		<button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})" size="default"></button>
@@ -43,7 +42,6 @@
           </view>
         </view>
       </view>
-
 
 			<button class="button" id="button" form-type="submit">添加{{word}}</button>
 		</view >
@@ -88,8 +86,6 @@
 	<view class="uploader">
 		<view class="uploader-text" bindtap="onCounterInc">
 			<button>上传后点此处</button>
-
-	
 		</view>
 	</view>
 
@@ -120,6 +116,4 @@
 			<text>云调用</text>
 		</navigator>
 	</view>
-
-
 </view>

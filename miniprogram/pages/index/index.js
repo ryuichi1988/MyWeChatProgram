@@ -11,8 +11,9 @@ Page({
     title:"",
     word:"",
     imgpath:"",
-    ne:[],
+    ne:[]    
   },
+
 
   onLoad: function() {
     if (!wx.cloud) {
@@ -125,7 +126,7 @@ Page({
         queryResult: JSON.stringify(res.data, null, 2),
         resid:5,
         ne: res.data,
-        imagePath:res.data.imgpath
+        //imagePath:res.data.imgpath
       })
       console.log('[数据库] [查询记录] 成功: ', res,rescolor1)
     },
@@ -161,13 +162,13 @@ Page({
   },
   showpic:function(){
     this.setData({
-      imagePath:app.globalData.imagePath
+      //imagePath:app.globalData.imagePath
       //imagePath:IMAGEPATH
 
     })
   },
 
-  onCounterInc: function() {
+  onCounterInc: function() { //上传后点此处
     const db = wx.cloud.database()
     const newCount = this.data.count + 1
     db.collection('counters').doc(this.data.counterId).update({
@@ -175,6 +176,7 @@ Page({
         imgpath: app.globalData.imagePath
       },
       success: res => {
+        console.log('[上传文件] 成功：', res),
         this.setData({
           count: newCount
         })
@@ -203,7 +205,6 @@ Page({
         wx.showLoading({
           title: '上传中',
         })
-
         const filePath = res.tempFilePaths[0]
         
         // 上传图片
@@ -217,7 +218,8 @@ Page({
 
             app.globalData.fileID = res.fileID
             app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
+            app.globalData.imagePath = res.fileID
+            console.log(cloudPath)
             //向counters添加文件路径
             
 //            wx.navigateTo({
