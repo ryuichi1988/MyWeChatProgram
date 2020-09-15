@@ -14,7 +14,10 @@ page {
 .show {
   display: block;
 }
-
+.allcolor{
+  float: left;
+  padding: 50rpx;
+}
 .textarea {
   padding: 20rpx;
   background: white;
@@ -69,13 +72,13 @@ input {
 .userinfo {
   padding-left: 120rpx;
 }
-
+/**index.wxss
 .code {
   border: 1rpx solid black;
   width: 600rpx;
   padding: 20rpx;
 }
-
+**/
 .userinfo-avatar {
   width: 100rpx;
   height: 100rpx;

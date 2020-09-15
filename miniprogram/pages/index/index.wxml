@@ -20,11 +20,11 @@
 							<input name="color1" bindinput="bindcolor1" placeholder="颜色1"></input>
 							<label>尺寸信息</label>
 							<view class="color1detail">
-								<input bindinput="bindHideKeyboard" type="number" name="color1xs" placeholder="XS数量"></input>
-								<input bindinput="bindHideKeyboard" type="number" name="color1s" placeholder="S数量"></input>
-								<input bindinput="bindHideKeyboard" type="number" name="color1m" placeholder="M数量"></input>
-								<input bindinput="bindHideKeyboard" type="number" name="color1l" placeholder="L数量"></input>
-								<input bindinput="bindHideKeyboard" type="number" name="color1xl" placeholder="XL数量"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color1xs" placeholder="XS数量:"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color1s" placeholder="S数量:"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color1m" placeholder="M数量:"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color1l" placeholder="L数量:"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color1xl" placeholder="XL数量:"></input>
 							</view>
 						</view>
 
@@ -33,11 +33,11 @@
 							<input name="color2" placeholder="颜色2"></input>
 							<label>尺寸信息</label>
 							<view class="color2detail">
-								<input bindinput="bindHideKeyboard" type="number" name="color2xs" placeholder="XS数量"></input>
-								<input bindinput="bindHideKeyboard" type="number" name="color2s" placeholder="S数量"></input>
-								<input bindinput="bindHideKeyboard" type="number" name="color2m" placeholder="M数量"></input>
-								<input bindinput="bindHideKeyboard" type="number" name="color2l" placeholder="L数量"></input>
-								<input bindinput="bindHideKeyboard" type="number" name="color2xl" placeholder="XL数量"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color2xs" placeholder="XS数量:"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color2s" placeholder="S数量:"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color2m" placeholder="M数量:"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color2l" placeholder="L数量:"></input>
+								<input bindinput="bindHideKeyboard" type="number" name="color2xl" placeholder="XL数量:"></input>
 							</view>
 						</view>
 					</view>
@@ -48,29 +48,7 @@
 					<button size="mini" type="default" bindtap="onQuery">查询记录</button>
 					<text  wx:if="{{queryResult}}">{{queryResult}}</text>
 				</view>
-				<view class="testButton">
-				<view class='a' wx:for="{{ne}}"><!--wx:for是微信数据绑定的一种方式，该数组有多少数据就显示多少个view-->
-				<!--index为每个数据对应的下标-->
-				<view >序号：{{index+1}}</view>
-				<!--item就相当于数组名+下标的结合体，适用于调用数组所有数据-->
-				<view>{{item._id}}</view>
-				<view >{{item.a_0__Color}}</view>
-				<view >{{item.b_0__Color}}</view>
-				<view >{{item.imgpath}}</view>
-				
-				<button class="testb" id="testb" bindtap="showpic">显示图片:{{item.imgpath}}</button>
-				<!--<block wx:if="{{xx}}">	一般这里我们会绑定一个变量，如果这个变量是true，也就是有值的情况下，该view1就会被渲染，如果没值或者是false会渲染下面view2的代码块 		</block> -->
-					<view>
-						<image class="image1" src="{{item.imgpath}}" mode="aspectFit"></image>
-					</view>
-					<view>
-						<button bindtap="test1">测试按钮{{test1}}</button>
-
-					</view>
-				
-				</view>
-					
-				</view>
+				<view class="testButton">测试testbutton</view>
 			</form>
 		</view>
 		<!-- 上传图片 -->
@@ -130,3 +108,59 @@
  
  </view>
 </view>
+
+
+  <!--下面是全部库存 -->
+<view>
+	<button size="mini" type="default" bindtap="showall">显示全部库存</button>
+  
+</view>
+
+
+
+<view class='a' wx:for="{{ne}}"><!--wx:for是微信数据绑定的一种方式，该数组有多少数据就显示多少个view-->
+<!--index为每个数据对应的下标
+	<view >序号：{{index+1}}</view>-->
+	<!--item就相当于数组名+下标的结合体，适用于调用数组所有数据-->
+	<view>--------------分割线--------------</view>
+	<view>商品号码{{item._id}}</view>
+	<view class="allcolor">
+		<view >颜色1:{{item.a_0__Color}}</view>
+		<view >XS数量:{{item.a_1__XS}}</view>
+		<view > S数量:{{item.a_1__S}}</view>
+		<view > M数量:{{item.a_1__M}}</view>
+		<view > L数量:{{item.a_1__L}}</view>
+		<view >XL数量:{{item.a_1__XL}}</view>
+	</view>
+	<view class="allcolor">
+		<view >颜色2:{{item.b_0__Color}}</view>
+		<view >XS数量:{{item.b_1__XS}}</view>
+		<view > S数量:{{item.b_1__S}}</view>
+		<view > M数量:{{item.b_1__M}}</view>
+		<view > L数量:{{item.b_1__L}}</view>
+		<view >XL数量:{{item.b_1__XL}}</view>
+	</view>
+
+	<view>--------------分割线--------------</view>
+</view>
+<!--	<view >{{item.imgpath}}</view>
+	
+	
+<block wx:if="{{xx}}">	一般这里我们会绑定一个变量，如果这个变量是true，也就是有值的情况下，该view1就会被渲染，如果没值或者是false会渲染下面view2的代码块 		</block> -->
+	<!--<view>
+		 <image class="image1" src="{{item.imgpath}}" mode="aspectFit"></image>
+	</view>
+
+	-->
+
+<!--
+<view>------------强力分割线------------</view>
+<view>
+ <text class="code" wx:if="{{showall}}">{{showall}}</text>
+</view>
+
+	<view>
+		<button class="testb" id="testb" bindtap="showpic">显示图片:{{item.imgpath}}</button>
+		<button bindtap="test1">测试按钮{{test1}}</button>
+
+	</view>-->

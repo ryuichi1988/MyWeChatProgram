@@ -12,6 +12,8 @@ Page({
     word:"",
     imgpath:"",
     ne:[], 
+    queryResult: '',
+    showall:"",
     showOrHidden:false
   },
   showButton: function(){
@@ -130,6 +132,31 @@ Page({
       this.setData({
         //queryResult: JSON.stringify(res.data, null, 2)
         queryResult: JSON.stringify(res.data, null, 2),
+        resid:5,
+        //ne: res.data,
+        //imagePath:res.data.imgpath
+      })
+      console.log('[数据库] [查询记录] 成功: ', res,rescolor1)
+    },
+    fail: err => {
+      wx.showToast({
+        icon: 'none',
+        title: '查询记录失败'
+      })
+      console.error('[数据库] [查询记录] 失败：', err)
+    }
+  })
+},
+showall: function() {
+  const db = wx.cloud.database()
+  // 查询当前用户所有的 counters
+  db.collection('counters').where({
+   // _id : this.data.title //查询写入的序列号
+  }).get({
+    success: res => {
+      this.setData({
+        //queryResult: JSON.stringify(res.data, null, 2)
+        showall: JSON.stringify(res.data, null, 2),
         resid:5,
         ne: res.data,
         //imagePath:res.data.imgpath
